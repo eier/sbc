@@ -1,0 +1,9 @@
+C:\Users\julian\Desktop\test\MalerHase\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\MalerHase.exe
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\MalerHase.pdb
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\XcoSpaces.dll
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\XcoSpaces.xml
+C:\Users\julian\Desktop\test\MalerHase\obj\Debug\MalerHase.exe
+C:\Users\julian\Desktop\test\MalerHase\obj\Debug\MalerHase.pdb
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\Eier.dll
+C:\Users\julian\Desktop\test\MalerHase\bin\Debug\Eier.pdb

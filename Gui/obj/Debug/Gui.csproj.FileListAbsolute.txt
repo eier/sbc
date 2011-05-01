@@ -1,0 +1,12 @@
+C:\Users\julian\Desktop\test\Gui\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.Form1.resources
+C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.Properties.Resources.resources
+C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.csproj.GenerateResource.Cache
+C:\Users\julian\Desktop\test\Gui\bin\Debug\Gui.exe
+C:\Users\julian\Desktop\test\Gui\bin\Debug\Gui.pdb
+C:\Users\julian\Desktop\test\Gui\bin\Debug\Eier.dll
+C:\Users\julian\Desktop\test\Gui\bin\Debug\XcoSpaces.dll
+C:\Users\julian\Desktop\test\Gui\bin\Debug\Eier.pdb
+C:\Users\julian\Desktop\test\Gui\bin\Debug\XcoSpaces.xml
+C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.exe
+C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.pdb

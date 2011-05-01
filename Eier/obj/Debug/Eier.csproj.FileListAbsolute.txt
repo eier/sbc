@@ -1,0 +1,5 @@
+C:\Users\julian\Desktop\test\Eier\bin\Debug\Eier.dll
+C:\Users\julian\Desktop\test\Eier\bin\Debug\Eier.pdb
+C:\Users\julian\Desktop\test\Eier\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\julian\Desktop\test\Eier\obj\Debug\Eier.dll
+C:\Users\julian\Desktop\test\Eier\obj\Debug\Eier.pdb
