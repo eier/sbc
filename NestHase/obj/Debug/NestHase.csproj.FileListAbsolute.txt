@@ -1,0 +1,9 @@
+\\DESK\julian\aaa\sbc\NestHase\obj\Debug\ResolveAssemblyReference.cache
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\NestHase.exe
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\NestHase.pdb
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\Eier.dll
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\XcoSpaces.dll
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\Eier.pdb
+\\DESK\julian\aaa\sbc\NestHase\bin\Debug\XcoSpaces.xml
+\\DESK\julian\aaa\sbc\NestHase\obj\Debug\NestHase.exe
+\\DESK\julian\aaa\sbc\NestHase\obj\Debug\NestHase.pdb
