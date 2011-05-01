@@ -35,43 +35,39 @@ namespace Gui
             XcoQueue<Eier.Ei> bemalteEier = new XcoQueue<Ei>();
             space.Add(bemalteEier, "BemalteEier");
             bemalteEier.AddNotificationForEntryEnqueued(this.bemalteEierNotify);
-            
-            XcoQueue<Eier.SchokoHase> schokoHasen = new XcoQueue<SchokoHase>();
-            space.Add(unbemalteEier, "SchokoHasen");
 
+            XcoQueue<Eier.SchokoHase> schokoHasen = new XcoQueue<SchokoHase>();
+            space.Add(schokoHasen, "SchokoHasen");
+            schokoHasen.AddNotificationForEntryEnqueued(this.schokoHasenNotify);
+            
             space_uri = new Uri("xco://127.0.0.1:8000");
         }
 
-
-        private delegate void testDelegate(XcoQueue<Ei> source, Ei entry);
-        private void test(XcoQueue<Ei> source, Ei entry)
-        {
-            textBox3.AppendText("Ei " + entry._Id + " produced");
-        }
         private void unbemalteEierNotify(XcoQueue<Ei> source, Ei entry)
         {
-            this.Invoke(new testDelegate(test), source, entry);
+            this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " produziert" + Environment.NewLine); }));
         }
-
-
 
         private void bemalteEierNotify(XcoQueue<Ei> source, Ei entry)
         {
-            textBox3.AppendText("Ei " + entry._Id + " " + entry._Farbe + " bemalt");
+            this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " bemalt" + Environment.NewLine); })); 
         }
 
+        private void schokoHasenNotify(XcoQueue<SchokoHase> source, SchokoHase entry)
+        {
+            this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " produziert" + Environment.NewLine); }));
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.AppendText("Produce + " + textBox1.Text + " Eier");
-         
-            startJob(new Henne("Henne_id", this.space_uri, System.Convert.ToInt32(textBox1.Text)));
+            textBox3.AppendText("Produce " + textBox1.Text + " Eier" + Environment.NewLine);
+            startJob(new Henne((string) comboBox1.SelectedItem, this.space_uri, System.Convert.ToInt32(textBox1.Text)));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox3.AppendText("Produce + " + textBox2.Text + " Hasen");
-            startJob(new ChocolatierHase("SchokoHase_id",  this.space_uri, System.Convert.ToInt32(textBox2.Text)));
+            textBox3.AppendText("Produce " + textBox2.Text + " Hasen" + Environment.NewLine);
+            startJob(new ChocolatierHase((string) comboBox2.SelectedItem, this.space_uri, System.Convert.ToInt32(textBox2.Text)));
         }
 
         private void startJob(ProduktionsTiere t)
@@ -80,11 +76,7 @@ namespace Gui
             Thread th = new Thread(ts);
             th.Start();
         }
-
     }
-
-
-
 
 
 
@@ -98,7 +90,7 @@ namespace Gui
 
         public ProduktionsTiere(string id, Uri space_uri, int count)
         {
-
+            this.id = id;
             this.space = new XcoSpace(0);
             this.count = count;
             this.remote_space_uri = space_uri;
@@ -106,7 +98,6 @@ namespace Gui
 
         public virtual void produce() { }
     }
-
 
     public class Henne : ProduktionsTiere
     {
@@ -118,7 +109,7 @@ namespace Gui
 
             for (int i = 0; i < this.count; i++)
             {
-                q.Enqueue(new Ei(id));
+                q.Enqueue(new Ei(id + "_" + i.ToString(), id));
             }
         }
     }
@@ -133,9 +124,36 @@ namespace Gui
 
             for (int i = 0; i < this.count; i++)
             {
-                q.Enqueue(new SchokoHase(id));
+                q.Enqueue(new SchokoHase(id + "_" + i.ToString(), id));
             }
         }
     }
+
+    public class LogistikHase
+    {
+        protected XcoSpace space;
+        protected Uri remote_space_uri;
+        protected string id;
+
+        public LogistikHase(string id, Uri space_uri, int count)
+        {
+            this.id = id;
+            this.space = new XcoSpace(0);
+            this.remote_space_uri = space_uri;
+        }
+
+        public void run()
+        {
+            XcoQueue<Nest> q = this.space.Get<XcoQueue<SchokoHase>>("SchokoHasen", remote_space_uri);
+
+            while (true)
+            {
+
+
+            }
+        }
+
+    }
+
 
 }

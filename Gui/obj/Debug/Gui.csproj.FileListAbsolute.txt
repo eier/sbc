@@ -10,3 +10,15 @@ C:\Users\julian\Desktop\test\Gui\bin\Debug\Eier.pdb
 C:\Users\julian\Desktop\test\Gui\bin\Debug\XcoSpaces.xml
 C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.exe
 C:\Users\julian\Desktop\test\Gui\obj\Debug\Gui.pdb
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\Gui.exe
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\Gui.pdb
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\ResolveAssemblyReference.cache
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\Gui.Form1.resources
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\Gui.Properties.Resources.resources
+\\DESK\julian\aaa\sbc\Gui\obj\Debug\Gui.csproj.GenerateResource.Cache
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\Gui.exe
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\Gui.pdb
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\Eier.dll
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\XcoSpaces.dll
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\Eier.pdb
+\\DESK\julian\aaa\sbc\Gui\bin\Debug\XcoSpaces.xml

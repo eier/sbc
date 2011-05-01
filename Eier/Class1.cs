@@ -4,34 +4,38 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Eier
 {
-
     [Serializable]
-    public class Ei : ISerializable
+    public class Produkt
     {
 
+        public Produkt(string i, string p)
+        {
+            _Id = i;
+            _Produzent = p;
+        }
+
         public string _Id;
-        public string _Farbe;
-        public string Farbe
+        public string Id
         {
-            set { this._Farbe = value; }
-            get { return this._Farbe; }
+            set { this._Id = value; }
+            get { return this._Id; }
         }
 
-        public Ei(string i)
+        public string _Produzent;
+        public string Produzent
         {
-            this._Id = i;
+            set { this._Produzent = value; }
+            get { return this._Produzent; }
+        }
+    }
+
+    [Serializable]
+    public class Ei : Produkt
+    {
+        public Ei(string i, string p) : base(i,p)
+        {
             this._Farbe = "unbemalt";
-        }
-        public Ei(SerializationInfo info, StreamingContext ctx)
-        {
-            this._Farbe = info.GetString("_Farbe");
-            this._Id = info.GetString("_Id");
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctx)
-        {
-            info.AddValue("_Farbe", this._Farbe);
-            info.AddValue("_Id", this._Id);
+            this._Maler = "Kein Maler";
         }
 
         public override string ToString()
@@ -39,34 +43,55 @@ namespace Eier
             return "Ei " + this._Id + " " + this._Farbe;
         }
 
+        public string _Farbe;
+        public string Farbe
+        {
+            set { this._Farbe = value; }
+            get { return this._Farbe; }
+        }
+
+        public string _Maler;
+        public string Maler
+        {
+            set { this._Maler = value; }
+            get { return this._Maler; }
+        }
     }
 
 
     [Serializable]
-    public class SchokoHase
+    public class SchokoHase : Produkt
     {
-
-        public string _Id;
-
-        public SchokoHase(string i)
+        public SchokoHase(string i, string p) : base(i,p)
         {
-            this._Id = i;
-        }
-        public SchokoHase(SerializationInfo info, StreamingContext ctx)
-        {
-            this._Id = info.GetString("_Id");
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctx)
-        {
-            info.AddValue("_Id", this._Id);
+            
         }
 
         public override string ToString()
         {
             return "SchokoHase " + this._Id;
         }
-
     }
+
+    [Serializable]
+    public class Nest : Produkt
+    {
+
+        public 
+        public Nest(string i, string p, Ei ei1, Ei ei2, SchokoHase sh)
+            : base(i, p)
+        {
+            this.ei1 = ei1;
+            this.ei2 = ei2;
+            this.sh = sh; 
+        }
+
+        public override string ToString()
+        {
+            return "Nest " + this._Id;
+        }
+    }
+
+
 
 }

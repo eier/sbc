@@ -7,3 +7,12 @@ C:\Users\julian\Desktop\test\MalerHase\obj\Debug\MalerHase.exe
 C:\Users\julian\Desktop\test\MalerHase\obj\Debug\MalerHase.pdb
 C:\Users\julian\Desktop\test\MalerHase\bin\Debug\Eier.dll
 C:\Users\julian\Desktop\test\MalerHase\bin\Debug\Eier.pdb
+\\DESK\julian\aaa\sbc\MalerHase\obj\Debug\ResolveAssemblyReference.cache
+\\DESK\julian\aaa\sbc\MalerHase\obj\Debug\MalerHase.exe
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\MalerHase.exe
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\MalerHase.pdb
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\Eier.dll
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\XcoSpaces.dll
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\Eier.pdb
+\\DESK\julian\aaa\sbc\MalerHase\bin\Debug\XcoSpaces.xml
+\\DESK\julian\aaa\sbc\MalerHase\obj\Debug\MalerHase.pdb
