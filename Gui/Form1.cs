@@ -28,20 +28,31 @@ namespace Gui
             InitializeComponent();
 
             space = new XcoSpace(8000);
-            XcoQueue<Eier.Ei> unbemalteEier = new XcoQueue<Ei>();
+
+            XcoQueue<Ei> unbemalteEier = new XcoQueue<Ei>(1000);
             space.Add(unbemalteEier, "UnbemalteEier");
             unbemalteEier.AddNotificationForEntryEnqueued(this.unbemalteEierNotify);
-            
-            XcoQueue<Eier.Ei> bemalteEier = new XcoQueue<Ei>();
+
+            XcoQueue<Ei> bemalteEier = new XcoQueue<Ei>(1000);
             space.Add(bemalteEier, "BemalteEier");
             bemalteEier.AddNotificationForEntryEnqueued(this.bemalteEierNotify);
 
-            XcoQueue<Eier.SchokoHase> schokoHasen = new XcoQueue<SchokoHase>();
+            XcoQueue<SchokoHase> schokoHasen = new XcoQueue<SchokoHase>(1000);
             space.Add(schokoHasen, "SchokoHasen");
             schokoHasen.AddNotificationForEntryEnqueued(this.schokoHasenNotify);
-            
+
+            XcoQueue<Nest> nester = new XcoQueue<Nest>(1000);
+            space.Add(nester, "Nester");
+            nester.AddNotificationForEntryEnqueued(this.nesterNotify);
+
+            XcoQueue<Nest> ausgeliefert = new XcoQueue<Nest>(1000);
+            space.Add(ausgeliefert, "Ausgeliefert");
+            ausgeliefert.AddNotificationForEntryEnqueued(this.ausgeliefertNotify);
+
             space_uri = new Uri("xco://127.0.0.1:8000");
         }
+
+
 
         private void unbemalteEierNotify(XcoQueue<Ei> source, Ei entry)
         {
@@ -58,6 +69,17 @@ namespace Gui
             this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " produziert" + Environment.NewLine); }));
         }
 
+        private void nesterNotify(XcoQueue<Nest> source, Nest entry)
+        {
+            this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " zusammengestellt" + Environment.NewLine); }));
+        }
+
+        private void ausgeliefertNotify(XcoQueue<Nest> source, Nest entry)
+        {
+            this.Invoke(new Action(() => { textBox3.AppendText(entry.ToString() + " ausgeliefert" + Environment.NewLine); }));
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             textBox3.AppendText("Produce " + textBox1.Text + " Eier" + Environment.NewLine);
@@ -70,90 +92,11 @@ namespace Gui
             startJob(new ChocolatierHase((string) comboBox2.SelectedItem, this.space_uri, System.Convert.ToInt32(textBox2.Text)));
         }
 
-        private void startJob(ProduktionsTiere t)
+        private void startJob(Tiere t)
         {
-            ThreadStart ts = new ThreadStart(t.produce);
+            ThreadStart ts = new ThreadStart(t.work);
             Thread th = new Thread(ts);
             th.Start();
         }
     }
-
-
-
-    
-    public class ProduktionsTiere
-    {
-        protected int count;
-        protected XcoSpace space;
-        protected Uri remote_space_uri;
-        protected string id;
-
-        public ProduktionsTiere(string id, Uri space_uri, int count)
-        {
-            this.id = id;
-            this.space = new XcoSpace(0);
-            this.count = count;
-            this.remote_space_uri = space_uri;
-        }
-
-        public virtual void produce() { }
-    }
-
-    public class Henne : ProduktionsTiere
-    {
-        public Henne(string id, Uri space_uri, int count) : base(id, space_uri, count) { }
-
-        public override void produce()
-        {
-            XcoQueue<Ei> q = this.space.Get<XcoQueue<Ei>>("UnbemalteEier", remote_space_uri);
-
-            for (int i = 0; i < this.count; i++)
-            {
-                q.Enqueue(new Ei(id + "_" + i.ToString(), id));
-            }
-        }
-    }
-
-    public class ChocolatierHase : ProduktionsTiere
-    {
-        public ChocolatierHase(string id, Uri space_uri, int count) : base(id, space_uri, count) { }
-
-        public override void produce()
-        {
-            XcoQueue<SchokoHase> q = this.space.Get<XcoQueue<SchokoHase>>("SchokoHasen", remote_space_uri);
-
-            for (int i = 0; i < this.count; i++)
-            {
-                q.Enqueue(new SchokoHase(id + "_" + i.ToString(), id));
-            }
-        }
-    }
-
-    public class LogistikHase
-    {
-        protected XcoSpace space;
-        protected Uri remote_space_uri;
-        protected string id;
-
-        public LogistikHase(string id, Uri space_uri, int count)
-        {
-            this.id = id;
-            this.space = new XcoSpace(0);
-            this.remote_space_uri = space_uri;
-        }
-
-        public void run()
-        {
-            XcoQueue<Nest> q = this.space.Get<XcoQueue<SchokoHase>>("SchokoHasen", remote_space_uri);
-
-            while (true)
-            {
-
-
-            }
-        }
-
-    }
-
-
 }

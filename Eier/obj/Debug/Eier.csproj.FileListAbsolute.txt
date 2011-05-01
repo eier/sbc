@@ -8,3 +8,5 @@ C:\Users\julian\Desktop\test\Eier\obj\Debug\Eier.pdb
 \\DESK\julian\aaa\sbc\Eier\obj\Debug\Eier.pdb
 \\DESK\julian\aaa\sbc\Eier\bin\Debug\Eier.dll
 \\DESK\julian\aaa\sbc\Eier\bin\Debug\Eier.pdb
+\\DESK\julian\aaa\sbc\Eier\bin\Debug\XcoSpaces.dll
+\\DESK\julian\aaa\sbc\Eier\bin\Debug\XcoSpaces.xml
