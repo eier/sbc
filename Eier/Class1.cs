@@ -11,6 +11,80 @@ using Eier;
 
 namespace Eier
 {
+
+    // SQueue wraps the XcoQueue. SQueue contains to XcoQueue, one for the real data, the other one for Notifications which are triggered automatically by Enqueue and Dequeue functions.
+    // Transaction is used to make data movement and notification atomic. The queue for nofitications has the same name as the real queue, but with "Notify" appended.
+    // To use notifications, use AddNotification on the this.count member, to get informed about data movement of the real queue. Either the integer 1 oder -1 is appended to the Notification queue,
+    // whenever Enqueue or Dequeue is called. A counter must be maintained externally to keep track of the occupancy.
+
+    public class SQueue<T>
+    {
+        public XcoQueue<T> queue;
+        public XcoQueue<int> count;
+        XcoSpace space;
+
+        // Constructor to build a new XcoQueue in local space.
+        public SQueue(XcoSpace space, string name)
+        {
+             this.space = space;
+             this.queue = new XcoQueue<T>(1000);
+             this.count = new XcoQueue<int>(1000);
+             this.space.Add(this.queue, name);
+             this.space.Add(this.count, name + "Notify");
+        }
+
+        // Constructor using container discovery.
+        public SQueue(XcoSpace space, string name, Uri remote_space_uri)
+        {
+            this.space = space;
+            this.queue = space.Get<XcoQueue<T>>(name, remote_space_uri);
+            this.count = space.Get<XcoQueue<int>>(name + "Notify", remote_space_uri);
+        }
+
+
+        public void Enqueue(T entry)
+        {
+            // Check if a transaction is already running, if so, dont open a new one and dont commit !
+            if (space.CurrentTransaction != null)
+            {
+                this.queue.Enqueue(entry, true);
+                this.count.Enqueue(1, true);
+            }
+            else
+            {
+                using (XcoTransaction tx = space.BeginTransaction())
+                {
+                    this.queue.Enqueue(entry, true);
+                    this.count.Enqueue(1, true);
+                    tx.Commit();
+                }
+            }
+        }
+
+        public T Dequeue()
+        {
+            T entry;
+            if (space.CurrentTransaction != null)
+            {
+                entry = this.queue.Dequeue(1000);
+                this.count.Enqueue(-1, true);
+            }
+            else
+            {
+                using (XcoTransaction tx = space.BeginTransaction())
+                {
+                    entry = this.queue.Dequeue(1000);
+                    this.count.Enqueue(-1, true);
+                    tx.Commit();
+                }
+            }
+            return entry;
+        }
+
+    }
+
+
+    // Produkt is the base class for all products like Ei, SchokoHase, ...
     [Serializable]
     public class Produkt
     {
@@ -103,6 +177,8 @@ namespace Eier
     }
 
 
+
+    // Tiere is the base class for all participants.
     public class Tiere
     {
         protected XcoSpace space;
@@ -115,11 +191,26 @@ namespace Eier
             this.remote_space_uri = space_uri;
         }
 
+        // work() is called by the main-function or thread.
+        // Build space and dio real_work();
+        // In early development phase, the cause of some exceptions couldn't be identified, so a while loop keeps things alive.
         public virtual void work()
         {
             using (this.space = new XcoSpace(0))
             {
-                real_work();
+
+                while (true)
+                {
+                    try
+                    {
+                        real_work();
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
+                }
             }
         }
 
@@ -141,11 +232,11 @@ namespace Eier
 
         public override void real_work()
         {
-            XcoQueue<Ei> q = this.space.Get<XcoQueue<Ei>>("UnbemalteEier", remote_space_uri);
+            SQueue<Ei> q = new SQueue<Ei>(this.space, "UnbemalteEier", remote_space_uri);
 
             for (int i = 0; i < this.count; i++)
             {
-                q.Enqueue(new Ei(id + "_" + i.ToString(), id), true);
+                q.Enqueue(new Ei(id + "_" + i.ToString(), id));
             }
         }
     }
@@ -162,11 +253,11 @@ namespace Eier
 
         public override void real_work()
         {
-            XcoQueue<SchokoHase> q = this.space.Get<XcoQueue<SchokoHase>>("SchokoHasen", remote_space_uri);
+            SQueue<SchokoHase> q = new SQueue<SchokoHase>(this.space, "SchokoHasen", remote_space_uri);
 
             for (int i = 0; i < this.count; i++)
             {
-                q.Enqueue(new SchokoHase(id + "_" + i.ToString(), id), true);
+                q.Enqueue(new SchokoHase(id + "_" + i.ToString(), id));
             }
         }
     }
@@ -174,24 +265,35 @@ namespace Eier
 
     public class LogistikHase : Tiere
     {
-        protected int count;
-
-        public LogistikHase(string id, Uri space_uri, int count)
+        public LogistikHase(string id, Uri space_uri)
             : base(id, space_uri)
         {
-            this.count = count;
         }
 
         public override void real_work()
         {
-            XcoQueue<Nest> eingang = this.space.Get<XcoQueue<Nest>>("Nester", remote_space_uri);
-            XcoQueue<Nest> ausgang = this.space.Get<XcoQueue<Nest>>("Ausgeliefert", remote_space_uri);
+            SQueue<Nest> eingang = new SQueue<Nest>(this.space, "Nester", remote_space_uri);
+            SQueue<Nest> ausgang = new SQueue<Nest>(this.space, "Ausgeliefert", remote_space_uri);
 
-            while (this.count > 0)
+            while (true)
             {
-                Nest n = eingang.Dequeue(true);
-                ausgang.Enqueue(n, true);
-                this.count = this.count - 1;
+                try
+                {
+                    using (XcoTransaction tx = space.BeginTransaction())
+                    {
+
+                        Nest n = eingang.Dequeue();
+                        ausgang.Enqueue(n);
+                        tx.Commit();
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+                // Dequeue operations have a timeout to allow the following lines to quit the programm nicely.
+                if (Console.KeyAvailable)
+                    return;
+
             }
         }
     }
@@ -209,25 +311,30 @@ namespace Eier
 
         public override void real_work()
         {
-            XcoQueue<Ei> unbemalt = space.Get<XcoQueue<Ei>>("UnbemalteEier", remote_space_uri);
-            XcoQueue<Ei> bemalt = space.Get<XcoQueue<Ei>>("BemalteEier", remote_space_uri);
+            SQueue<Ei> unbemalt = new SQueue<Ei>(this.space, "UnbemalteEier", remote_space_uri);
+            SQueue<Ei> bemalt = new SQueue<Ei>(this.space, "BemalteEier", remote_space_uri);
 
             while (true)            
             {
-                Console.WriteLine("Dequeue");
                 try
                 {
-                    Ei e = unbemalt.Dequeue(1000);
-                    Console.WriteLine("done");
-                    e.Maler = this.id;
-                    e.Farbe = this.farbe;
-                    bemalt.Enqueue(e, true);
+                    using (XcoTransaction tx = space.BeginTransaction())
+                    {
+
+                        Ei e = unbemalt.Dequeue();
+                        Console.WriteLine("done");
+                        e.Maler = this.id;
+                        e.Farbe = this.farbe;
+                        bemalt.Enqueue(e);
+                        tx.Commit();
+                    }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Timeout");
-                   
+                    Console.WriteLine("Timeout");                   
                 }
+                if (Console.KeyAvailable)
+                    return;
             }
         }
     }
@@ -244,25 +351,32 @@ namespace Eier
 
         public override void real_work()
         {
-            XcoQueue<SchokoHase> schoko = space.Get<XcoQueue<SchokoHase>>("SchokoHasen", remote_space_uri);
-            XcoQueue<Ei> bemalt = space.Get<XcoQueue<Ei>>("BemalteEier", remote_space_uri);
-            XcoQueue<Nest> nester = space.Get<XcoQueue<Nest>>("Nester", remote_space_uri);
+            SQueue<SchokoHase> hasen = new SQueue<SchokoHase>(this.space, "SchokoHasen", remote_space_uri);
+            SQueue<Ei> bemalt = new SQueue<Ei>(this.space, "BemalteEier", remote_space_uri);
+            SQueue<Nest> nester = new SQueue<Nest>(this.space, "Nester", remote_space_uri);
+
             int count = 0;
 
             while (true)
             {
-                Console.WriteLine("Begin");
-
-                //using(XcoTransaction tx = space.BeginTransaction())
-                //{
-                    Ei e1 = bemalt.Dequeue(true);
-                    Ei e2 = bemalt.Dequeue(true);
-                    SchokoHase sh = schoko.Dequeue(true);
-                    //tx.Commit();
-                    Console.WriteLine("done");
-                    nester.Enqueue(new Nest(id + count.ToString(),id, e1,e2,sh), true);
-                //}
-                count = count + 1;
+                try
+                {
+                    using (XcoTransaction tx = space.BeginTransaction())
+                    {
+                        Ei e1 = bemalt.Dequeue();
+                        Ei e2 = bemalt.Dequeue();
+                        SchokoHase sh = hasen.Dequeue();
+                        nester.Enqueue(new Nest(id + count.ToString(), id, e1, e2, sh));
+                        count = count + 1;
+                        tx.Commit();
+                        Console.WriteLine("done");
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+                if (Console.KeyAvailable)
+                    return;
             }
         }
     }

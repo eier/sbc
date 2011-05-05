@@ -6,7 +6,7 @@ using XcoSpaces.Collections;
 using XcoSpaces.Exceptions;
 using Eier;
 
-namespace LogistikHase
+namespace LogistikHase_
 {
     class Program
     {

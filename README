@@ -1,1 +1,10 @@
 Hallo !
+
+Da der XcoSpace wegen .NET Inkompatibilität nicht unter Linux läuft, wird auf ein build-tool verzichtet, da Visual C# ohnehin notwendig ist.
+
+Das Gui-Projekt enthält das GUI und initialisiert den gemeinsamen space, legt die SQueues an und startet die Produzenten. Das GUI ist selbsterklärend.
+
+Die {Maler|Nest|Logistik}Hase Projekte sind einfache Worker, die per commandline gestartet werden müssen. Als erster Argument nehmen alle Worker ihre ID an. Das zweite Argument gibt es lediglich beim MalerHasen, daß die zu verwendende Farbe definiert.
+
+Möchte man ein Programm beenden, darf NICHT Strg+C verwendet werden, da der Space dies nicht verkraftet. Stattdessen wurden in allen Blockierenden Dequeue-Aufrufen ein Timeout von einer Sekunde gesetzt um die Consolen-Programme durch einen beliebigen Tastendruck sich beenden.
+
