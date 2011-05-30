@@ -1,0 +1,6 @@
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\bin\Release\Sbc11WcfClient.Common.dll.config
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\bin\Release\Sbc11WcfClient.Common.dll
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\bin\Release\Sbc11WcfClient.Common.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\obj\Release\Sbc11WcfClient.Common.dll
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\Common\obj\Release\Sbc11WcfClient.Common.pdb

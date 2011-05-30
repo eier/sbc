@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4744a700-07f9-4c94-93fa-691c6e4b0f55" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8800/OsterFabrik" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OsterFabrik2.xsd" MetadataType="Schema" ID="676c48b2-9dd2-4712-9f84-8f8334d2e5f8" SourceId="1" SourceUrl="http://localhost:8800/OsterFabrik?xsd=xsd0" />
+    <MetadataFile FileName="OsterFabrik.xsd" MetadataType="Schema" ID="c07b6e47-3ff6-4116-8d06-47f7703e03fb" SourceId="1" SourceUrl="http://localhost:8800/OsterFabrik?xsd=xsd2" />
+    <MetadataFile FileName="OsterFabrik3.xsd" MetadataType="Schema" ID="b8b2bddd-3a02-4d67-811a-cd967b03c2df" SourceId="1" SourceUrl="http://localhost:8800/OsterFabrik?xsd=xsd1" />
+    <MetadataFile FileName="OsterFabrik.disco" MetadataType="Disco" ID="e0fcac2a-d4ad-42bd-ae4f-5133d47e0fb5" SourceId="1" SourceUrl="http://localhost:8800/OsterFabrik?disco" />
+    <MetadataFile FileName="OsterFarbrikService.wsdl" MetadataType="Wsdl" ID="60562456-7a74-4af2-b811-bfc2f696de6e" SourceId="1" SourceUrl="http://localhost:8800/OsterFabrik?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

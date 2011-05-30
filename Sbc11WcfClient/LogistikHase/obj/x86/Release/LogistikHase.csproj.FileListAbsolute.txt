@@ -1,0 +1,8 @@
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\bin\Release\LogistikHase.exe.config
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\bin\Release\LogistikHase.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\bin\Release\LogistikHase.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\bin\Release\Sbc11WcfClient.Common.dll
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\bin\Release\Sbc11WcfClient.Common.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\obj\x86\Release\LogistikHase.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\LogistikHase\obj\x86\Release\LogistikHase.pdb

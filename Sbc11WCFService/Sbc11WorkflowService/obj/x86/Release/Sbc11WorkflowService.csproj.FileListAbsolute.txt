@@ -1,0 +1,6 @@
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Release\Sbc11WorkflowService.exe.config
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Release\Sbc11WorkflowService.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Release\Sbc11WorkflowService.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Release\Sbc11WorkflowService.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Release\Sbc11WorkflowService.pdb

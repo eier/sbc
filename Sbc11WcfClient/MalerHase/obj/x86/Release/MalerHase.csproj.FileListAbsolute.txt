@@ -1,0 +1,8 @@
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\bin\Release\MalerHase.exe.config
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\bin\Release\MalerHase.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\bin\Release\MalerHase.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\bin\Release\Sbc11WcfClient.Common.dll
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\bin\Release\Sbc11WcfClient.Common.pdb
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\obj\x86\Release\MalerHase.exe
+C:\Users\Peter\Documents\Visual Studio 2010\Projects\Sbc11WcfClient\MalerHase\obj\x86\Release\MalerHase.pdb

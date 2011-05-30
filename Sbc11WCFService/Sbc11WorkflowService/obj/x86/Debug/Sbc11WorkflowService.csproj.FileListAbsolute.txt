@@ -1,0 +1,6 @@
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Debug\Sbc11WorkflowService.exe.config
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Debug\Sbc11WorkflowService.exe
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\bin\Debug\Sbc11WorkflowService.pdb
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Debug\Sbc11WorkflowService.exe
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WorkflowService\Sbc11WorkflowService\obj\x86\Debug\Sbc11WorkflowService.pdb

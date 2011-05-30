@@ -1,0 +1,8 @@
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\bin\Debug\NestHase.exe
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\bin\Debug\NestHase.pdb
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\bin\Debug\Sbc11WcfClient.Common.dll
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\bin\Debug\Sbc11WcfClient.Common.pdb
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\obj\x86\Debug\NestHase.exe
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\obj\x86\Debug\NestHase.pdb
+c:\users\peter\documents\visual studio 2010\Projects\Sbc11WcfClient\NestHase\bin\Debug\NestHase.exe.config
